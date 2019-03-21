@@ -65,21 +65,27 @@ Component({
     y: 0,
     canMovedSize: 0,
     periodStyleTop: 0,
-    dockIndex: 0
+    dockIndex: 0,
+    extraSizePx: 0
   },
   ready() {
     let {boxHeight, ballSize, period, allBoxHeight} = this.data
+    let oneSize = (boxHeight-ballSize)/(period-1)
     this.setData({
       canMovedSize: boxHeight-ballSize,
       periodArray: new Array(period).fill(0),
       // 一段的距离 单位rpx
-      oneSize: (boxHeight-ballSize)/(period-1),
+      oneSize,
       // 每一段之间的点距离 是(总长度-背部条高度/2)+球的高度/2-小点的高度/2 就是class 为list-step 的style top
       // 小点的高度为16，所以这里没有更改 如果需要更改小点的高度
       // 需要在这里也进行配置
       // 这里没有减去 最后小点的高度8，在页面上减的，因为+了新的需求
-      periodStyleTop: (allBoxHeight-boxHeight)/2+ballSize/2
-
+      periodStyleTop: (allBoxHeight-boxHeight)/2+ballSize/2,
+      // 因为在滑动过程中 使用的是px，所以要计算顶部和底部的px高度
+      // 如果没有球的高度 底部会有radius 所以需要+上球的高度/2
+      extraSizePx: proportion((allBoxHeight-boxHeight)/2+ballSize/2),
+      // 最后一段的比例
+      lastPercent: (oneSize+(allBoxHeight-boxHeight)/2)/oneSize
     })
   },
   /**
@@ -88,6 +94,8 @@ Component({
   methods: {
     onChange(val) {
       // 记录移动的高度
+      // 单位是px
+      // 所以 有颜色的块 为了方便 也使用px为单位
       this.setData({
         movedY: val.detail.y
       })

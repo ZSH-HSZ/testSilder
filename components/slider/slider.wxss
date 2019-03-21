@@ -15,9 +15,14 @@ movable-view {
   left: 50%;
   transform: translateX(-50%);
   z-index: -1;
+}
+.beautiful-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(186,148,253,1);
   border-radius: 15px;
 }
-
 
 /* 每个list条 这个就不传递了，需要更改样式了自己改一下 */
 /* 小点的高度如果修改了 请阅读 js 里的ready */

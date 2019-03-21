@@ -10,15 +10,19 @@
     </movable-view>
     <view 
       class="bg" 
-      style="background: {{bgColor}};width: {{boxWeight}}rpx;height: {{allBoxHeight}}rpx;top: {{(boxHeight-allBoxHeight)/2}}rpx"
+      style="background: {{bgColor}};border-radius: {{boxWeight/2}}rpx;width: {{boxWeight}}rpx;height: {{allBoxHeight}}rpx;top: {{(boxHeight-allBoxHeight)/2}}rpx"
     >
+      <!-- 背景色 -->
+      <view style="width: {{boxWeight}}rpx;border-radius: {{boxWeight/2}}rpx;height: {{movedY*(dockIndex===period-1?lastPercent:1)+extraSizePx}}px" class="beautiful-box"></view>
+      <!-- 小块 -->
       <view wx:for="{{period}}" wx:key="{{index}}" class='list-step' style='top: {{index*oneSize+periodStyleTop-8}}rpx;background: {{bgColor}};'>
         <view class="text" style="font-size: {{textFontSize}}rpx;color: {{textFontColor}}">
           {{index+1}}
         </view>
       </view>
     </view>
-    <view 
+    <!-- 另外一个块 因为需要+点击事件，因为上一个有背景色，没办法设置大的index值，所以只可以新增一个定位来写 -->
+    <view
       class="bg" 
       style="width: 0rpx;height: {{allBoxHeight}}rpx;top: {{(boxHeight-allBoxHeight)/2}}rpx;z-index: 10"
     >
