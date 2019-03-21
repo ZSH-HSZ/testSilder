@@ -1,0 +1,48 @@
+movable-area {
+  position: relative;
+}
+
+movable-view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 100%;
+}
+
+.bg {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  border-radius: 15px;
+}
+
+
+/* 每个list条 这个就不传递了，需要更改样式了自己改一下 */
+/* 小点的高度如果修改了 请阅读 js 里的ready */
+.list-step {
+  position: absolute;
+  width: 20rpx;
+  height: 16rpx;
+  left: -20rpx;
+  border-radius: 8rpx 0 0 8rpx;
+}
+.text {
+  width: 100rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: right;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -120rpx;
+}
+
+.bind-touch {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  left: -12rpx;
+  z-index: 100;
+}

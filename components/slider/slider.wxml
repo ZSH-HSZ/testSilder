@@ -1,0 +1,30 @@
+<!--components/slider/slider.wxml-->
+<view>
+  <movable-area style="width: {{ballSize}}rpx;height: {{boxHeight}}rpx;">
+    <movable-view 
+      y="{{y}}"  
+      direction="vertical" 
+      bindchange="onChange" 
+      bindtouchend="testtouchend" 
+      style="width: {{ballSize}}rpx;height: {{ballSize}}rpx;background: {{ballColor}}">
+    </movable-view>
+    <view 
+      class="bg" 
+      style="background: {{bgColor}};width: {{boxWeight}}rpx;height: {{allBoxHeight}}rpx;top: {{(boxHeight-allBoxHeight)/2}}rpx"
+    >
+      <view wx:for="{{period}}" wx:key="{{index}}" class='list-step' style='top: {{index*oneSize+periodStyleTop-8}}rpx;background: {{bgColor}};'>
+        <view class="text" style="font-size: {{textFontSize}}rpx;color: {{textFontColor}}">
+          {{index+1}}
+        </view>
+      </view>
+    </view>
+    <view 
+      class="bg" 
+      style="width: 0rpx;height: {{allBoxHeight}}rpx;top: {{(boxHeight-allBoxHeight)/2}}rpx;z-index: 10"
+    >
+      <!-- 点击事件 -->
+      <view bindtap="chooseMove" wx:for="{{period}}" wx:key="{{index}}" data-index="{{index}}" wx:if="{{index!==dockIndex}}" class="bind-touch" style="top: {{index*oneSize+periodStyleTop-25}}rpx">
+      </view>
+    </view>
+  </movable-area>
+</view>
