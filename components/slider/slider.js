@@ -101,7 +101,6 @@ Component({
       })
     },
     chooseMove(val) {
-      console.log(val)
       let {index} = val.currentTarget.dataset
       if(index!==this.data.dockIndex) {
         this.setData({
@@ -116,7 +115,6 @@ Component({
       // 一段的距离 px
       // 因为传递的距离就是px
       const oneSize = proportion(this.data.oneSize)
-      console.log(oneSize)
       // 方便理解 写为if
       // 是否超过一段的2/5 超过回退
       const dockIndex = this.data.movedY%oneSize<oneSize*0.4?Math.floor(this.data.movedY/oneSize):Math.ceil(this.data.movedY/oneSize)
